@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Brochero te espera – Pueblo Santo. Turismo inclusivo en Villa Cura Brochero, Córdoba. Naturaleza, historia y cultura accesible para todos." />
+<title>Brochero te espera – Pueblo Santo | Turismo inclusivo en Villa Cura Brochero</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ============ Reset y base ============ */
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; font-size: 18px; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+  body {
+    margin: 0;
+    font-family: 'Open Sans', system-ui, -apple-system, sans-serif;
+    color: #1F2A24;
+    background: #FBF7EE;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3 { font-family: 'Lora', Georgia, serif; color: #1F4D3A; line-height: 1.25; margin: 0 0 .6em; }
+  h1 { font-size: clamp(2rem, 5vw, 3.2rem); }
+  h2 { font-size: clamp(1.6rem, 3.5vw, 2.2rem); border-bottom: 3px solid #6B8E6B; padding-bottom: .3em; }
+  h3 { font-size: 1.25rem; }
+  p { margin: 0 0 1em; }
+  a { color: #1F4D3A; text-decoration: underline; text-underline-offset: 3px; }
+  a:hover, a:focus { color: #0F2A1F; }
+  img { max-width: 100%; height: auto; display: block; }
+  button { font-family: inherit; cursor: pointer; }
+
+  /* ============ Alto contraste ============ */
+  body.high-contrast {
+    background: #000;
+    color: #fff;
+  }
+  body.high-contrast h1, body.high-contrast h2, body.high-contrast h3 { color: #fff; }
+  body.high-contrast h2 { border-color: #fff; }
+  body.high-contrast a { color: #FFEB3B; }
+  body.high-contrast header, body.high-contrast footer, body.high-contrast section { background: #000 !important; border-color: #fff !important; }
+  body.high-contrast .card, body.high-contrast .info-box { background: #000 !important; border: 2px solid #fff !important; color: #fff !important; }
+  body.high-contrast .btn, body.high-contrast button { background: #FFEB3B !important; color: #000 !important; border: 2px solid #fff !important; }
+  body.high-contrast input, body.high-contrast textarea, body.high-contrast select { background: #000 !important; color: #fff !important; border: 2px solid #fff !important; }
+
+  /* ============ Skip link ============ */
+  .skip-link {
+    position: absolute; top: -100px; left: 10px;
+    background: #1F4D3A; color: #fff; padding: .6em 1em;
+    border-radius: 0 0 6px 6px; z-index: 1000; font-weight: 600;
+    text-decoration: none;
+  }
+  .skip-link:focus { top: 0; outline: 3px solid #FFEB3B; }
+
+  /* ============ Foco visible ============ */
+  :focus-visible {
+    outline: 3px solid #1F4D3A;
+    outline-offset: 3px;
+  }
+  body.high-contrast :focus-visible { outline-color: #FFEB3B; }
+
+  /* ============ Header / Nav ============ */
+  header.site-header {
+    position: sticky; top: 0; z-index: 100;
+    background: #1F4D3A; color: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  }
+  .header-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: .7rem 1rem; max-width: 1200px; margin: 0 auto;
+    flex-wrap: wrap; gap: .5rem;
+  }
+  .brand { font-family: 'Lora', serif; font-weight: 700; font-size: 1.15rem; color: #fff; text-decoration: none; }
+  .brand:hover, .brand:focus { color: #FFEB3B; }
+  nav ul {
+    list-style: none; margin: 0; padding: 0;
+    display: flex; flex-wrap: wrap; gap: .2rem;
+  }
+  nav a {
+    color: #fff; text-decoration: none;
+    padding: .5em .8em; border-radius: 4px;
+    font-weight: 600; font-size: .95rem;
+  }
+  nav a:hover, nav a:focus { background: #2E6B50; color: #FFEB3B; }
+  .menu-toggle {
+    display: none; background: transparent; border: 2px solid #fff; color: #fff;
+    padding: .4em .7em; border-radius: 4px; font-size: 1rem;
+  }
+  @media (max-width: 860px) {
+    .menu-toggle { display: inline-block; }
+    nav { width: 100%; }
+    nav ul { display: none; flex-direction: column; width: 100%; }
+    nav ul.open { display: flex; }
+    nav a { display: block; padding: .8em 1em; border-top: 1px solid #2E6B50; }
+  }
+
+  /* ============ Controles de accesibilidad ============ */
+  .a11y-controls {
+    background: #2E6B50; color: #fff;
+    padding: .5rem 1rem;
+    display: flex; flex-wrap: wrap; gap: .5rem; align-items: center;
+    justify-content: center;
+    font-size: .9rem;
+  }
+  .a11y-controls button {
+    background: #fff; color: #1F4D3A;
+    border: none; padding: .4em .8em; border-radius: 4px;
+    font-weight: 600;
+  }
+  .a11y-controls button:hover, .a11y-controls button:focus { background: #FFEB3B; color: #000; }
+
+  /* ============ Layout general ============ */
+  main { max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
+  section { padding: 3rem 0; }
+  section + section { border-top: 1px solid #E3D9C0; }
+
+  /* ============ Hero / Inicio ============ */
+  .hero {
+    position: relative;
+    min-height: 85vh;
+    display: flex; align-items: center; justify-content: center;
+    text-align: center;
+    color: #fff;
+    padding: 4rem 1rem;
+    overflow: hidden;
+    background-color: #1F4D3A;
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: 0;
+  }
+  .hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(15, 42, 31, 0.55) 0%,
+      rgba(15, 42, 31, 0.70) 50%,
+      rgba(15, 42, 31, 0.85) 100%
+    );
+    z-index: 1;
+  }
+  .hero-content { position: relative; z-index: 2; max-width: 800px; }
+  .hero h1 {
+    color: #fff;
+    margin-bottom: .3em;
+    text-shadow: 0 2px 10px rgba(0,0,0,.7);
+  }
+  .hero .subtitle {
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-size: 1.4rem;
+    color: #F5EFE0;
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 8px rgba(0,0,0,.7);
+  }
+  .hero .tagline {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    text-shadow: 0 2px 8px rgba(0,0,0,.7);
+  }
+  .btn {
+    display: inline-block;
+    background: #F5EFE0; color: #1F4D3A;
+    padding: .9em 1.8em; border: 2px solid #F5EFE0;
+    border-radius: 6px; font-weight: 700; font-size: 1rem;
+    text-decoration: none;
+    transition: background .2s, color .2s;
+  }
+  .btn:hover, .btn:focus { background: #1F4D3A; color: #F5EFE0; border-color: #F5EFE0; }
+
+  /* ============ Tarjetas ============ */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+  .card {
+    background: #fff;
+    border: 1px solid #E3D9C0;
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex; flex-direction: column;
+    box-shadow: 0 2px 6px rgba(31,77,58,.08);
+  }
+  .card .photo {
+    width: 100%; height: 200px;
+    background: #6B8E6B;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-style: italic; text-align: center; padding: 1rem;
+  }
+  .card .photo img {
+    width: 100%; height: 100%; object-fit: cover;
+  }
+  .card-body { padding: 1.2rem; flex: 1; display: flex; flex-direction: column; }
+  .card-body h3 { margin-top: 0; }
+  .card-meta { font-size: .9rem; color: #4A5A52; margin: .3em 0; }
+  .card-meta strong { color: #1F4D3A; }
+  .a11y-block {
+    background: #F5EFE0;
+    border-left: 4px solid #1F4D3A;
+    padding: .8rem 1rem;
+    margin-top: auto;
+    border-radius: 0 6px 6px 0;
+    font-size: .9rem;
+  }
+  .a11y-block h4 {
+    margin: 0 0 .4em; font-size: .95rem;
+    color: #1F4D3A; font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+  }
+  .a11y-list { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: .4rem .8rem; }
+  .a11y-list li { display: flex; align-items: center; gap: .3em; }
+  .a11y-icon {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 1.4em; height: 1.4em; font-size: 1rem;
+    background: #1F4D3A; color: #fff; border-radius: 50%;
+    font-weight: 700;
+  }
+
+  /* ============ Turismo inclusivo ============ */
+  .info-box {
+    background: #fff; border: 1px solid #E3D9C0; border-radius: 10px;
+    padding: 1.5rem; margin-bottom: 1rem;
+  }
+  .info-box h3 { color: #1F4D3A; }
+
+  /* ============ Galería ============ */
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+  .gallery-item {
+    aspect-ratio: 4 / 3;
+    background: #6B8E6B;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-style: italic; text-align: center; padding: .5rem;
+    cursor: zoom-in;
+    border: 2px solid transparent;
+    font-size: .85rem;
+  }
+  .gallery-item img {
+    width: 100%; height: 100%; object-fit: cover;
+  }
+  .gallery-item:hover, .gallery-item:focus { border-color: #1F4D3A; outline: none; }
+
+  /* Lightbox */
+  .lightbox {
+    display: none;
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,.9);
+    z-index: 2000;
+    align-items: center; justify-content: center;
+    padding: 1rem;
+  }
+  .lightbox.open { display: flex; }
+  .lightbox-content {
+    background: #FBF7EE; color: #1F2A24;
+    padding: 2rem; border-radius: 10px;
+    max-width: 700px; width: 100%;
+    text-align: center;
+  }
+  .lightbox-img {
+    width: 100%;
+    max-height: 60vh;
+    object-fit: contain;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    background: #6B8E6B;
+  }
+  .lightbox-img-placeholder {
+    width: 100%; height: 300px;
+    background: #6B8E6B; color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 6px; margin-bottom: 1rem;
+    font-style: italic;
+  }
+  .lightbox-close {
+    background: #1F4D3A; color: #fff;
+    border: none; padding: .6em 1.2em; border-radius: 6px;
+    font-weight: 700; margin-top: 1rem;
+  }
+
+  /* ============ Información útil ============ */
+  .contact-list { list-style: none; padding: 0; }
+  .contact-list li {
+    background: #fff; border: 1px solid #E3D9C0; border-radius: 8px;
+    padding: 1rem; margin-bottom: .8rem;
+  }
+  .contact-list strong { color: #1F4D3A; display: block; margin-bottom: .2em; }
+
+  /* ============ Formulario ============ */
+  form { max-width: 600px; margin: 1.5rem auto 0; }
+  .form-group { margin-bottom: 1.2rem; }
+  label { display: block; font-weight: 600; margin-bottom: .3em; color: #1F4D3A; }
+  input, textarea {
+    width: 100%; padding: .7em;
+    border: 2px solid #C9BFA5; border-radius: 6px;
+    font-family: inherit; font-size: 1rem;
+    background: #fff;
+  }
+  input:focus, textarea:focus { border-color: #1F4D3A; outline: none; }
+  textarea { min-height: 120px; resize: vertical; }
+  .error-msg { color: #B02A2A; font-size: .9rem; margin-top: .3em; display: none; }
+  .form-group.invalid input, .form-group.invalid textarea { border-color: #B02A2A; }
+  .form-group.invalid .error-msg { display: block; }
+  .form-success {
+    background: #E8F0E8; border: 2px solid #1F4D3A;
+    padding: 1rem; border-radius: 6px; margin-top: 1rem;
+    display: none;
+  }
+  .form-success.show { display: block; }
+
+  /* ============ Footer ============ */
+  footer.site-footer {
+    background: #1F4D3A; color: #F5EFE0;
+    padding: 2.5rem 1rem; text-align: center;
+    margin-top: 2rem;
+  }
+  footer .closing {
+    font-family: 'Lora', serif; font-size: 1.1rem;
+    font-style: italic; margin-bottom: .5em;
+  }
+  footer a { color: #FFEB3B; }
+
+  /* ============ Utilidades ============ */
+  .center { text-align: center; }
+  .sr-only {
+    position: absolute; width: 1px; height: 1px;
+    padding: 0; margin: -1px; overflow: hidden;
+    clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+  }
+</style>
+</head>
+<body>
+
+<a href="#contenido" class="skip-link">Saltar al contenido</a>
+
+<!-- ============ HEADER ============ -->
+<header class="site-header" role="banner">
+  <div class="a11y-controls" aria-label="Controles de accesibilidad">
+    <span id="a11y-label">Accesibilidad:</span>
+    <button type="button" id="font-decrease" aria-describedby="a11y-label">A− Texto más pequeño</button>
+    <button type="button" id="font-increase" aria-describedby="a11y-label">A+ Texto más grande</button>
+    <button type="button" id="contrast-toggle" aria-describedby="a11y-label" aria-pressed="false">Alto contraste</button>
+  </div>
+  <div class="header-inner">
+    <a href="#inicio" class="brand" aria-label="Inicio – Brochero te espera">Brochero te espera</a>
+    <button type="button" class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="main-nav">Menú ☰</button>
+    <nav id="main-nav" aria-label="Navegación principal">
+      <ul id="nav-list">
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#lugares">Lugares</a></li>
+        <li><a href="#inclusivo">Turismo inclusivo</a></li>
+        <li><a href="#historia">Historia y cultura</a></li>
+        <li><a href="#naturaleza">Naturaleza</a></li>
+        <li><a href="#galeria">Galería</a></li>
+        <li><a href="#info">Información útil</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="contenido">
+
+  <!-- ============ INICIO ============ -->
+  <section id="inicio" class="hero" aria-labelledby="hero-title">
+    <img
+      class="hero-bg"
+      src="hero-plaza.jpg"
+      alt="Vista aérea diurna de la Plaza Centenario de Villa Cura Brochero: el Santuario con su fachada clara, la plaza abierta con banderas, árboles verdes y las sierras de Córdoba al fondo bajo el cielo del atardecer."
+      onerror="this.style.display='none';"
+    />
+    <div class="hero-overlay" aria-hidden="true"></div>
+    <div class="hero-content">
+      <h1 id="hero-title">Brochero te espera</h1>
+      <p class="subtitle">Pueblo Santo</p>
+      <p class="tagline">Un lugar para desconectarse, disfrutar y descubrir.</p>
+      <a href="#lugares" class="btn">Explorá</a>
+    </div>
+  </section>
+
+  <!-- ============ LUGARES ============ -->
+  <section id="lugares" aria-labelledby="lugares-title">
+    <h2 id="lugares-title">Lugares para visitar</h2>
+    <p>Conocé los puntos imperdibles de Villa Cura Brochero y sus alrededores. Cada ficha incluye información de accesibilidad para que planifiques tu visita con tranquilidad.</p>
+
+    <div class="grid">
+
+      <!-- Tarjeta 1: Santuario -->
+      <article class="card">
+        <div class="photo" role="img" aria-label="Fachada del Santuario de San José Gabriel del Rosario Brochero">
+          <img src="santuario.jpg" alt="Fachada del Santuario de San José Gabriel del Rosario Brochero con su torre, arcos de entrada y puerta de madera bajo un cielo con nubes." onerror="this.parentElement.innerHTML='Foto: Santuario de Brochero';" />
+        </div>
+        <div class="card-body">
+          <h3>Santuario de San José Gabriel del Rosario Brochero</h3>
+          <p>Templo principal dedicado al Santo Cura, corazón espiritual y arquitectónico de la ciudad. Un espacio de paz, historia y peregrinación.</p>
+          <p class="card-meta"><strong>Horarios:</strong> [HORARIO]</p>
+          <p class="card-meta"><strong>Teléfono:</strong> [TELÉFONO]</p>
+          <a class="btn" href="[ENLACE_GOOGLE_MAPS]" target="_blank" rel="noopener">Cómo llegar</a>
+          <div class="a11y-block" aria-label="Información de accesibilidad">
+            <h4>Accesibilidad</h4>
+            <ul class="a11y-list">
+              <li><span class="a11y-icon" aria-hidden="true">♿</span> Rampas de acceso</li>
+              <li><span class="a11y-icon" aria-hidden="true">🚻</span> Baños adaptados</li>
+              <li><span class="a11y-icon" aria-hidden="true">🅿</span> Estacionamiento reservado</li>
+              <li><span class="a11y-icon" aria-hidden="true">🚶</span> Ingreso sin escalones</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <!-- Tarjeta 2: Plaza Centenario -->
+      <article class="card">
+        <div class="photo" role="img" aria-label="Plaza Centenario y centro de Villa Cura Brochero">Foto: Plaza Centenario</div>
+        <div class="card-body">
+          <h3>Plaza Centenario y centro de Villa Cura Brochero</h3>
+          <p>El corazón cívico y social del pueblo. Ideal para caminar, sentarse a la sombra de los árboles y sentir la vida cotidiana brochero.</p>
+          <p class="card-meta"><strong>Horarios:</strong> Abierta las 24 hs</p>
+          <p class="card-meta"><strong>Teléfono:</strong> [TELÉFONO]</p>
+          <a class="btn" href="[ENLACE_GOOGLE_MAPS]" target="_blank" rel="noopener">Cómo llegar</a>
+          <div class="a11y-block" aria-label="Información de accesibilidad">
+            <h4>Accesibilidad</h4>
+            <ul class="a11y-list">
+              <li><span class="a11y-icon" aria-hidden="true">♿</span> Senderos planos</li>
+              <li><span class="a11y-icon" aria-hidden="true">🚻</span> Baños públicos adaptados</li>
+              <li><span class="a11y-icon" aria-hidden="true"></span> Estacionamiento cercano</li>
+              <li><span class="a11y-icon" aria-hidden="true">🪑</span> Bancos de descanso</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <!-- Tarjeta 3: Río Panaholma -->
+      <article class="card">
+        <div class="photo" role="img" aria-label="Río Panaholma con aguas claras y rocas">Foto: Río Panaholma</div>
+        <div class="card-body">
+          <h3>Río Panaholma</h3>
+          <p>Uno de los paisajes más emblemáticos de las sierras de Córdoba. Aguas cristalinas, pozones y un entorno natural ideal para conectar con la naturaleza.</p>
+          <p class="card-meta"><strong>Horarios:</strong> [HORARIO]</p>
+          <p class="card-meta"><strong>Teléfono:</strong> [TELÉFONO]</p>
+          <a class="btn" href="[ENLACE_GOOGLE_MAPS]" target="_blank" rel="noopener">Cómo llegar</a>
+          <div class="a11y-block" aria-label="Información de accesibilidad">
+            <h4>Accesibilidad</h4>
+            <ul class="a11y-list">
+              <li><span class="a11y-icon" aria-hidden="true">♿</span> Mirador accesible</li>
+              <li><span class="a11y-icon" aria-hidden="true">🅿</span> Estacionamiento cercano</li>
+              <li><span class="a11y-icon" aria-hidden="true">⚠</span> Acceso al río con desniveles</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <!-- Tarjeta 4: Balnearios -->
+      <article class="card">
+        <div class="photo" role="img" aria-label="Balneario con pasarelas y áreas de descanso">Foto: Balnearios</div>
+        <div class="card-body">
+          <h3>Balnearios</h3>
+          <p>Espacios preparados para disfrutar del río con seguridad y comodidad. Ideales para ir en familia, con servicios y zonas de sombra.</p>
+          <p class="card-meta"><strong>Horarios:</strong> [HORARIO]</p>
+          <p class="card-meta"><strong>Teléfono:</strong> [TELÉFONO]</p>
+          <a class="btn" href="[ENLACE_GOOGLE_MAPS]" target="_blank" rel="noopener">Cómo llegar</a>
+          <div class="a11y-block" aria-label="Información de accesibilidad">
+            <h4>Accesibilidad</h4>
+            <ul class="a11y-list">
+              <li><span class="a11y-icon" aria-hidden="true">♿</span> Pasarelas accesibles</li>
+              <li><span class="a11y-icon" aria-hidden="true">🚻</span> Baños adaptados</li>
+              <li><span class="a11y-icon" aria-hidden="true">🅿</span> Estacionamiento reservado</li>
+              <li><span class="a11y-icon" aria-hidden="true"></span> Áreas de descanso</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <!-- Tarjeta 5: Sierras y senderos -->
+      <article class="card">
+        <div class="photo" role="img" aria-label="Sendero serrano con vistas a los cerros">Foto: Sierras y senderos</div>
+        <div class="card-body">
+          <h3>Sierras y senderos</h3>
+          <p>Caminatas entre aromos, molles y quebrachos. Recorridos de distintos niveles para descubrir la flora, la fauna y los paisajes del Traslasierra.</p>
+          <p class="card-meta"><strong>Horarios:</strong> [HORARIO]</p>
+          <p class="card-meta"><strong>Teléfono:</strong> [TELÉFONO]</p>
+          <a class="btn" href="[ENLACE_GOOGLE_MAPS]" target="_blank" rel="noopener">Cómo llegar</a>
+          <div class="a11y-block" aria-label="Información de accesibilidad">
+            <h4>Accesibilidad</h4>
+            <ul class="a11y-list">
+              <li><span class="a11y-icon" aria-hidden="true">🚶</span> Senderos señalizados</li>
+              <li><span class="a11y-icon" aria-hidden="true">♿</span> Tramos accesibles</li>
+              <li><span class="a11y-icon" aria-hidden="true">⚠</span> Consultar dificultad según sendero</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ============ TURISMO INCLUSIVO ============ -->
+  <section id="inclusivo" aria-labelledby="inclusivo-title">
+    <h2 id="inclusivo-title">Turismo inclusivo</h2>
+    <p>Brochero es para todas y todos. Esta guía resume recomendaciones y contactos según el tipo de necesidad, para que puedas disfrutar al máximo tu visita.</p>
+
+    <div class="grid">
+      <article class="info-box">
+        <h3>Movilidad reducida</h3>
+        <p>El casco céntrico cuenta con veredas planificadas y varios edificios públicos con rampas. Te recomendamos consultar previamente el estado de los senderos serranos y los balnearios, ya que algunos accesos al río presentan desniveles.</p>
+        <p><strong>Contacto:</strong> [TELÉFONO] – Oficina de Turismo con información actualizada sobre accesibilidad.</p>
+      </article>
+
+      <article class="info-box">
+        <h3>Discapacidad visual</h3>
+        <p>Varios puntos de interés ofrecen experiencias sensoriales: sonidos del río, aromas de la flora serrana y texturas de la piedra. Se sugiere visitar acompañado o consultar por visitas guiadas con descripción auditiva.</p>
+        <p><strong>Contacto:</strong> [TELÉFONO] – Guía especializado en turismo accesible.</p>
+      </article>
+
+      <article class="info-box">
+        <h3>Discapacidad auditiva</h3>
+        <p>La mayoría de la información turística está disponible en formato visual (cartelería, folletos, mapas). Consultá por la disponibilidad de guías en Lengua de Señas Argentina en temporada alta.</p>
+        <p><strong>Contacto:</strong> [TELÉFONO] – Oficina de Turismo.</p>
+      </article>
+
+      <article class="info-box">
+        <h3>Discapacidad intelectual</h3>
+        <p>El ambiente serrano invita a la calma y al disfrute pausado. Se recomienda planificar recorridos cortos, con paradas en espacios conocidos y acompañamiento. La hospitalidad local facilita la integración.</p>
+        <p><strong>Contacto:</strong> [TELÉFONO] – Asistencia al visitante.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============ HISTORIA Y CULTURA ============ -->
+  <section id="historia" aria-labelledby="historia-title">
+    <h2 id="historia-title">Historia y cultura</h2>
+    <div class="grid">
+      <article class="info-box">
+        <h3>El legado del Santo Cura Brochero</h3>
+        <p>El presbítero José Gabriel del Rosario Brochero (1840–1914) es una de las figuras más queridas de la historia argentina. Desde Villa del Tránsito —hoy Villa Cura Brochero— recorrió a lomo de mula el Traslasierra para llevar consuelo, educación y fe a las familias más alejadas.</p>
+        <p>Su ejemplo de cercanía, trabajo y amor por el prójimo sigue vivo en cada rincón del pueblo. Fue canonizado en 2016 por el papa Francisco, convirtiéndose en el primer santo nacido en Argentina.</p>
+      </article>
+      <article class="info-box">
+        <h3>Identidad local</h3>
+        <p>La fe, la tradición gaucha y el orgullo serrano se entrelazan en la identidad brochero. Fiestas patronales, peregrinaciones, artesanías y la cocina regional son parte de un patrimonio que se transmite de generación en generación.</p>
+        <p>Visitar Brochero es sumergirse en una cultura viva, donde la historia no se cuenta: se camina, se comparte y se siente.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============ NATURALEZA Y ACTIVIDADES ============ -->
+  <section id="naturaleza" aria-labelledby="naturaleza-title">
+    <h2 id="naturaleza-title">Naturaleza y actividades</h2>
+    <p>Las sierras de Córdoba regalan paisajes únicos. En Brochero vas a encontrar ríos, cerros, aromas del monte nativo y espacios ideales para descansar en familia o compartir con amigos.</p>
+
+    <div class="grid">
+      <article class="info-box">
+        <h3>Ríos y balnearios</h3>
+        <p>Aguas claras, pozones para refrescarse y playas de piedras. Los balnearios habilitados ofrecen servicios, sombra y espacios para picnic.</p>
+      </article>
+      <article class="info-box">
+        <h3>Caminatas y senderos</h3>
+        <p>Recorridos de distintos niveles entre vegetación autóctona. Desde paseos cortos aptos para toda la familia hasta tramos más exigentes para quienes buscan aventura.</p>
+      </article>
+      <article class="info-box">
+        <h3>Paisajes serranos</h3>
+        <p>Miradores naturales con vistas panorámicas del Traslasierra. Un convite para la fotografía, la contemplación y el silencio.</p>
+      </article>
+      <article class="info-box">
+        <h3>Actividades al aire libre</h3>
+        <p>Cabalgatas, avistaje de aves, astronomía nocturna y jornadas de descanso en contacto con la naturaleza. El ritmo de Brochero invita a bajar las revoluciones.</p>
+      </article>
+      <article class="info-box">
+        <h3>Espacios para la familia</h3>
+        <p>Plazas, áreas verdes y establecimientos preparados para recibir a niños, niñas y personas mayores, con comodidades y atención cálida.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============ GALERÍA ============ -->
+  <section id="galeria" aria-labelledby="galeria-title">
+    <h2 id="galeria-title">Galería</h2>
+    <p>Imágenes que cuentan Brochero. Hacé clic en cualquier foto para ampliarla.</p>
+
+    <div class="gallery" role="list">
+      <!-- Santuario: imagen real -->
+      <button type="button" class="gallery-item" role="listitem" data-img="santuario.jpg" data-caption="Fachada del Santuario de San José Gabriel del Rosario Brochero" aria-label="Ampliar: Fachada del Santuario de San José Gabriel del Rosario Brochero">
+        <img src="santuario.jpg" alt="Fachada del Santuario de San José Gabriel del Rosario Brochero con su torre, arcos de entrada y puerta de madera bajo un cielo con nubes." onerror="this.outerHTML='Foto: Santuario';" />
+      </button>
+      <!-- REEMPLAZAR FOTO: Río Panaholma con sus rocas y agua cristalina. -->
+      <button type="button" class="gallery-item" role="listitem" data-caption="Río Panaholma con rocas y agua cristalina" aria-label="Ampliar: Río Panaholma">
+        Foto: Río Panaholma
+      </button>
+      <!-- REEMPLAZAR FOTO: Plaza Centenario con sus árboles y bancos. -->
+      <button type="button" class="gallery-item" role="listitem" data-caption="Plaza Centenario con árboles y bancos" aria-label="Ampliar: Plaza Centenario">
+        Foto: Plaza Centenario
+      </button>
+      <!-- REEMPLAZAR FOTO: Sendero entre vegetación serrana. -->
+      <button type="button" class="gallery-item" role="listitem" data-caption="Sendero entre vegetación serrana" aria-label="Ampliar: Sendero serrano">
+        Foto: Sendero serrano
+      </button>
+      <!-- REEMPLAZAR FOTO: Familia disfrutando del balneario. -->
+      <button type="button" class="gallery-item" role="listitem" data-caption="Familia disfrutando del balneario" aria-label="Ampliar: Familia en balneario">
+        Foto: Familia en el balneario
+      </button>
+      <!-- REEMPLAZAR FOTO: Paisaje de cerros al amanecer. -->
+      <button type="button" class="gallery-item" role="listitem" data-caption="Paisaje de cerros al amanecer" aria-label="Ampliar: Cerros al amanecer">
+        Foto: Cerros al amanecer
+      </button>
+      <!-- REEMPLAZAR FOTO: Artesanías locales. -->
+      <button type="button" class="gallery-item" role="listitem" data-caption="Artesanías locales" aria-label="Ampliar: Artesanías locales">
+        Foto: Artesanías
+      </button>
+      <!-- REEMPLAZAR FOTO: Cocina regional serrana. -->
+      <button type="button" class="gallery-item" role="listitem" data-caption="Cocina regional serrana" aria-label="Ampliar: Cocina regional">
+        Foto: Cocina regional
+      </button>
+    </div>
+  </section>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Imagen ampliada">
+    <div class="lightbox-content">
+      <img class="lightbox-img" id="lightbox-img" src="" alt="" onerror="this.style.display='none'; document.getElementById('lightbox-img-fallback').style.display='flex';" />
+      <div class="lightbox-img-placeholder" id="lightbox-img-fallback" style="display:none;">Foto ampliada</div>
+      <p id="lightbox-caption"></p>
+      <button type="button" class="lightbox-close" id="lightbox-close">Cerrar</button>
+    </div>
+  </div>
+
+  <!-- ============ INFORMACIÓN ÚTIL ============ -->
+  <section id="info" aria-labelledby="info-title">
+    <h2 id="info-title">Información útil</h2>
+
+    <h3>Teléfonos de interés</h3>
+    <ul class="contact-list">
+      <li><strong>Oficina de Turismo</strong> [TELÉFONO]</li>
+      <li><strong>Hospital / Centro de salud</strong> [TELÉFONO]</li>
+      <li><strong>Policía</strong> [TELÉFONO]</li>
+      <li><strong>Transporte / Terminal de ómnibus</strong> [TELÉFONO]</li>
+    </ul>
+
+    <h3>Cómo llegar</h3>
+    <div class="info-box">
+      <p>Desde la ciudad de Córdoba, se accede por la Ruta Nacional 20 hasta Mina Clavero y luego por la RP 14 hasta Villa Cura Brochero. El viaje dura aproximadamente [TIEMPO]. Consultá servicios de transporte regular en [ENLACE_GOOGLE_MAPS].</p>
+    </div>
+
+    <h3>Alojamiento</h3>
+    <div class="info-box">
+      <p>La ciudad ofrece hoteles, cabañas, hosterías y campings. Consultá por opciones con habitaciones accesibles y servicios adaptados según tus necesidades.</p>
+      <p><strong>Reservas y consultas:</strong> [TELÉFONO]</p>
+    </div>
+
+    <h3>Gastronomía</h3>
+    <div class="info-box">
+      <p>Restaurantes, confiterías y bares con cocina regional y propuestas para todos los gustos. Muchos establecimientos cuentan con menús accesibles y espacios adaptados.</p>
+      <p><strong>Consulta de recomendaciones:</strong> [TELÉFONO]</p>
+    </div>
+  </section>
+
+  <!-- ============ CONTACTO ============ -->
+  <section id="contacto" aria-labelledby="contacto-title">
+    <h2 id="contacto-title" class="center">Contacto</h2>
+    <p class="center">¿Tenés consultas? Escribinos y te respondemos a la brevedad.</p>
+
+    <form id="contact-form" novalidate>
+      <div class="form-group">
+        <label for="nombre">Nombre y apellido <span aria-hidden="true">*</span></label>
+        <input type="text" id="nombre" name="nombre" required autocomplete="name" aria-required="true" />
+        <span class="error-msg" id="err-nombre">Por favor, ingresá tu nombre.</span>
+      </div>
+      <div class="form-group">
+        <label for="email">Correo electrónico <span aria-hidden="true">*</span></label>
+        <input type="email" id="email" name="email" required autocomplete="email" aria-required="true" />
+        <span class="error-msg" id="err-email">Ingresá un correo electrónico válido.</span>
+      </div>
+      <div class="form-group">
+        <label for="mensaje">Mensaje <span aria-hidden="true">*</span></label>
+        <textarea id="mensaje" name="mensaje" required aria-required="true"></textarea>
+        <span class="error-msg" id="err-mensaje">Por favor, escribí tu mensaje.</span>
+      </div>
+      <button type="submit" class="btn">Enviar mensaje</button>
+      <div class="form-success" id="form-success" role="status">¡Gracias! Tu mensaje fue enviado.</div>
+    </form>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer" role="contentinfo">
+  <p class="closing">Naturaleza · Historia · Cultura · Turismo — Córdoba, Argentina. ¡Te esperamos!</p>
+  <p><small>© Brochero te espera – Pueblo Santo. Sitio de turismo inclusivo.</small></p>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ============ Menú móvil ============ */
+  var menuToggle = document.getElementById('menu-toggle');
+  var navList = document.getElementById('nav-list');
+  menuToggle.addEventListener('click', function () {
+    var expanded = menuToggle.getAttribute('aria-expanded') === 'true';
+    menuToggle.setAttribute('aria-expanded', String(!expanded));
+    navList.classList.toggle('open');
+  });
+  navList.querySelectorAll('a').forEach(function (a) {
+    a.addEventListener('click', function () {
+      if (window.innerWidth <= 860) {
+        navList.classList.remove('open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+  });
+
+  /* ============ Tamaño de fuente ============ */
+  var root = document.documentElement;
+  var baseFontSize = 18;
+  var currentStep = 0;
+  var stepSize = 2;
+  var minStep = -2;
+  var maxStep = 4;
+
+  function applyFontSize() {
+    root.style.fontSize = (baseFontSize + currentStep * stepSize) + 'px';
+  }
+  document.getElementById('font-increase').addEventListener('click', function () {
+    if (currentStep < maxStep) { currentStep++; applyFontSize(); }
+  });
+  document.getElementById('font-decrease').addEventListener('click', function () {
+    if (currentStep > minStep) { currentStep--; applyFontSize(); }
+  });
+
+  /* ============ Alto contraste ============ */
+  var contrastBtn = document.getElementById('contrast-toggle');
+  contrastBtn.addEventListener('click', function () {
+    document.body.classList.toggle('high-contrast');
+    var pressed = document.body.classList.contains('high-contrast');
+    contrastBtn.setAttribute('aria-pressed', String(pressed));
+  });
+
+  /* ============ Lightbox galería ============ */
+  var lightbox = document.getElementById('lightbox');
+  var lightboxImg = document.getElementById('lightbox-img');
+  var lightboxImgFallback = document.getElementById('lightbox-img-fallback');
+  var lightboxCaption = document.getElementById('lightbox-caption');
+  var lightboxClose = document.getElementById('lightbox-close');
+  var lastFocused = null;
+
+  document.querySelectorAll('.gallery-item').forEach(function (item) {
+    item.addEventListener('click', function () {
+      lastFocused = item;
+      var caption = item.getAttribute('data-caption') || '';
+      var imgSrc = item.getAttribute('data-img') || '';
+      lightboxCaption.textContent = caption;
+      if (imgSrc) {
+        lightboxImg.src = imgSrc;
+        lightboxImg.alt = caption;
+        lightboxImg.style.display = 'block';
+        lightboxImgFallback.style.display = 'none';
+      } else {
+        lightboxImg.style.display = 'none';
+        lightboxImgFallback.style.display = 'flex';
+      }
+      lightbox.classList.add('open');
+      lightboxClose.focus();
+    });
+    item.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        item.click();
+      }
+    });
+  });
+
+  function closeLightbox() {
+    lightbox.classList.remove('open');
+    if (lastFocused) lastFocused.focus();
+  }
+  lightboxClose.addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', function (e) {
+    if (e.target === lightbox) closeLightbox();
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && lightbox.classList.contains('open')) closeLightbox();
+  });
+
+  /* ============ Validación de formulario ============ */
+  var form = document.getElementById('contact-form');
+  var success = document.getElementById('form-success');
+
+  function validateEmail(value) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+  }
+
+  function setInvalid(group, show) {
+    if (show) group.classList.add('invalid');
+    else group.classList.remove('invalid');
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var nombre = document.getElementById('nombre');
+    var email = document.getElementById('email');
+    var mensaje = document.getElementById('mensaje');
+
+    var ok = true;
+    var gNombre = nombre.closest('.form-group');
+    var gEmail = email.closest('.form-group');
+    var gMensaje = mensaje.closest('.form-group');
+
+    if (!nombre.value.trim()) { setInvalid(gNombre, true); ok = false; } else { setInvalid(gNombre, false); }
+    if (!validateEmail(email.value.trim())) { setInvalid(gEmail, true); ok = false; } else { setInvalid(gEmail, false); }
+    if (!mensaje.value.trim()) { setInvalid(gMensaje, true); ok = false; } else { setInvalid(gMensaje, false); }
+
+    if (ok) {
+      success.classList.add('show');
+      form.reset();
+      setTimeout(function () { success.classList.remove('show'); }, 5000);
+    } else {
+      success.classList.remove('show');
+      var firstInvalid = form.querySelector('.form-group.invalid input, .form-group.invalid textarea');
+      if (firstInvalid) firstInvalid.focus();
+    }
+  });
+
+  ['nombre', 'email', 'mensaje'].forEach(function (id) {
+    var el = document.getElementById(id);
+    el.addEventListener('blur', function () {
+      var group = el.closest('.form-group');
+      if (id === 'email') setInvalid(group, !validateEmail(el.value.trim()) && el.value.trim() !== '');
+      else setInvalid(group, !el.value.trim() && el.dataset.touched === '1');
+      el.dataset.touched = '1';
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
